@@ -8,8 +8,10 @@ code myself, step by step, and checked each piece against PyTorch where possible
 - **MLP**: character-level language model with a manual BatchNorm
 - **Deep network**: `Linear`, `Tanh`, and `BatchNorm1d` implemented as classes by hand
 - **Manual backpropagation**: gradients written by hand through a network with
-  BatchNorm, compared against PyTorch (in progress)
-- **WaveNet-style model**: hierarchical character model (in progress)
+  BatchNorm (cross-entropy, softmax, tanh, matrix multiplication, BatchNorm),
+  checked against PyTorch with an exact/approximate gradient check
+- **WaveNet-style model**: hierarchical character model built from `Embedding`,
+  `FlattenConsecutive`, and `Sequential` layers, including a BatchNorm fix for 3D inputs
 
 ## What I learned
 - Why initialization matters: saturated tanh units stop learning.
@@ -19,13 +21,6 @@ code myself, step by step, and checked each piece against PyTorch where possible
   variable is broadcast, sum over the broadcast dimension. If it feeds two
   places, add the gradients.
 - Checking tensor shapes catches most bugs early.
-
-## Status
-| Part | Status |
-|------|--------|
-| Notebook: micrograd, MLP, BatchNorm, deep network | Done (long training run in progress) |
-| Manual backpropagation (BatchNorm network) | In progress |
-| WaveNet-style model | In progress |
 
 ## Background
 I'm a data analyst (Google Data Analytics and Advanced Data Analytics
